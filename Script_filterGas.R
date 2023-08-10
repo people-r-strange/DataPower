@@ -10,10 +10,10 @@ library(openxlsx)
 file.path <- "/Users/viviennemaxwell/Library/CloudStorage/Box-Box/Vivienne Maxwell/DataXPower/DataPower"
 
 # Create the list of files present in that folder location
-buildings.list <- list.files(path = file.path, pattern = '*.csv') #1:2
+manufacture.list <- list.files(path = file.path, pattern = '*.csv') #1:11
 
 #load all the csv files in the folder 
-buildings.list.names <- lapply(buildings.list,read_csv) #2
+manufacture.list.names <- lapply(manufacture.list,read_csv) #11
 
 # create list of values to filter for
 filter_values <- c("co2", "co", "so2", "no2", "ch4", "o3", "co2e_100yr", "co2e_20yr")
@@ -29,7 +29,7 @@ filter_dataframe <- function(df, column_name, values) {
 }
 
 # Apply the filter_dataframe function to each data frame in the list
-filtered_buildings_list <- lapply(buildings.list.names, filter_dataframe, column_name = "gas", values = filter_values) #135.1MB
+filtered_manufacture_list <- lapply(manufacture.list.names, filter_dataframe, column_name = "gas", values = filter_values) #135.1MB
 
 #export as workbook 
-write.xlsx(filtered_buildings_list, "FilteredData/Buildings_FilteredList.xlsx")
+write.xlsx(filtered_manufacture_list, "FilteredData/manufacture_FilteredList.xlsx")
